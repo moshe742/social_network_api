@@ -48,7 +48,11 @@ class SignupAPI(View):
                                                password,
                                                first_name=data['first_name'],
                                                last_name=data['last_name'])
-                return JsonResponse({'success': True}, status=201)
+                return JsonResponse({
+                    'username': username,
+                    'email': email,
+                    'user_id': user.id
+                }, status=201)
             else:
                 return JsonResponse({'error': 'email is not verifiable'})
         except KeyError:
